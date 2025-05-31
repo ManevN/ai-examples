@@ -12,6 +12,7 @@ Project steps
    - Install python
    - Install required Python package => pip install sentence-transformers
    - Create a small pythin script like generate_vectors.py
+   - Using sentence-transformers to convert text into embeddings (vectors).
    - Run the script => python generate_vectors.py
    - It will generate a file called vector.json like
   <pre><code>
@@ -24,12 +25,19 @@ Project steps
     ]
   </code></pre>
 
-  - Now we have real vector embedding saved to a file.
+  - Now we have real vector embedding saved to a file, saved vectors to a file (vector.json).
      
-4. Embedding - Using sentence-transformers to generate embeddings
+4.  Upload to Qdrant – Load precomputed embeddings and insert them into your Qdrant collection for semantic search.
     - The vector.json file now contains the data in a format that can be easily imported into Qdrant for efficient similarity seach operation. The next logical step would be to upload these vector.json entries into your running Qdrant instance.
     - In order to putt data in Qdrant we need to instal qdrant-client and then use rest api to upload data => pip install qdrant-client
     - Create pythin script like upload_vectors_to_qdrant.py
+        - Loading pre-generated embeddings from vectors.json (which were already created by generate_vectors.py).
+        - Uploading those vectors to Qdrant.
+        - Optionally performing a search using new embeddings (you encode the query using SentenceTransformer).
       
 
-This process essentially moves your text data from being raw strings, to semantically rich numerical vectors, and then stores them in a specialized database (Qdrant) designed to quickly find similar vectors. You've now set up a basic end-to-end vector search pipeline!
+This process essentially moves your text data from being raw strings, to semantically rich numerical vectors, and then stores them in a specialized database (Qdrant) designed to quickly find similar vectors. You've now set up a basic end-to-end vector search pipeline and successfully completed the "data ingestion" phase of a Retrieval-Augmented Generation (RAG) pipeline.
+
+Now here is next phase => Phase 2 - Retrieval & Generation (Basic RAG)
+
+
