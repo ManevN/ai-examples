@@ -41,3 +41,11 @@ This process essentially moves your text data from being raw strings, to semanti
 Now here is next phase => Phase 2 - Retrieval & Generation (Basic RAG)
 
 
+
+ollama run llama3
+
+pip install sentence-transformers qdrant-client requests
+
+python rag_local_ollama.py
+
+

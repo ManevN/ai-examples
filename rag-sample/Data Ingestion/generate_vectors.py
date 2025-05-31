@@ -10,6 +10,7 @@ documents = [
     "Meta developed LLaMA, a large language model.",
     "Qdrant is a vector database designed for similarity search.",
     "Retrieval-Augmented Generation combines search with generation.",    
+    "My name is Nenad. I am a software engineer. From Skopje",
 ]
 
 vectors = model.encode(documents)
