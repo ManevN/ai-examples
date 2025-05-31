@@ -31,3 +31,5 @@ Project steps
     - In order to putt data in Qdrant we need to instal qdrant-client and then use rest api to upload data => pip install qdrant-client
     - Create pythin script like upload_vectors_to_qdrant.py
       
+
+This process essentially moves your text data from being raw strings, to semantically rich numerical vectors, and then stores them in a specialized database (Qdrant) designed to quickly find similar vectors. You've now set up a basic end-to-end vector search pipeline!
