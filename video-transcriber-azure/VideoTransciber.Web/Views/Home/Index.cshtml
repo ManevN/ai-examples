@@ -1,8 +1,16 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Video Transcription";
 }
+<h2>Video Transcription</h2>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<form asp-action="Transcribe" method="post">
+    <label>Video URL</label>
+    <input type="text" name="videoUrl" style="width:400px;" />
+    <button type="submit">Transcribe</button>
+</form>
+
+@if (ViewBag.Transcript != null)
+{
+    <h3>Transcript</h3>
+    <pre>@ViewBag.Transcript</pre>
+}
