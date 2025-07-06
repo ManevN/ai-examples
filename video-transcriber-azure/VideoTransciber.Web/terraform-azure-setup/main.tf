@@ -46,3 +46,40 @@ resource "azurerm_storage_container" "container" {
   storage_account_name  = azurerm_storage_account.storage.name
   container_access_type = "private"
 }
+
+# Create the App Service Plan (Consumption Plan for Function App)
+resource "azurerm_app_service_plan" "function_plan" {
+  name                = "transcriber-func-plan"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  kind                = "FunctionApp"
+  reserved            = true  # Required for Linux plans
+
+  sku {
+    tier = "Dynamic"
+    size = "Y1"
+  }
+}
+
+# Create the Function App
+resource "azurerm_linux_function_app" "function_app" {
+  name                       = "transcriber-func-${random_string.suffix.result}"
+  resource_group_name        = azurerm_resource_group.rg.name
+  location                   = azurerm_resource_group.rg.location
+  service_plan_id            = azurerm_app_service_plan.function_plan.id
+  storage_account_name       = azurerm_storage_account.storage.name
+  storage_account_access_key = azurerm_storage_account.storage.primary_access_key
+
+  site_config {
+    application_stack {
+      python_version = "3.10"
+    }
+  }
+
+  app_settings = {
+    "AzureWebJobsStorage" = azurerm_storage_account.storage.primary_connection_string
+    "FUNCTIONS_WORKER_RUNTIME" = "python"
+  }
+
+  https_only = true
+}
