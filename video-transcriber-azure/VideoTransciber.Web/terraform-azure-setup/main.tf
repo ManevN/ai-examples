@@ -43,7 +43,7 @@ resource "azurerm_storage_account" "storage" {
 
 resource "azurerm_storage_container" "container" {
   name                  = var.storage_container_name
-  storage_account_name  = azurerm_storage_account.storage.name
+  storage_account_id    = azurerm_storage_account.storage.id
   container_access_type = "private"
 }
 
@@ -67,7 +67,6 @@ resource "azurerm_linux_function_app" "function_app" {
   resource_group_name        = azurerm_resource_group.rg.name
   location                   = azurerm_resource_group.rg.location
   service_plan_id            = azurerm_app_service_plan.function_plan.id
-  storage_account_name       = azurerm_storage_account.storage.name
   storage_account_access_key = azurerm_storage_account.storage.primary_access_key
 
   site_config {
