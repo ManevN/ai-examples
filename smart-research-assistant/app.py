@@ -5,7 +5,7 @@ st.set_page_config(page_title="Smart Research Assistant", page_icon=":robot_face
 st.title("Smart Research Assistant")
 st.markdown("Upload a document and ask question about it.")
 
-uploaded_file = st.file_uploader("Choose a file", type=["pdf"])
+uploaded_file = st.file_uploader("Choose a file", type=["pdf", "csv",])
 
 if uploaded_file:
     question = st.text_input("Ask a question about the document:")
