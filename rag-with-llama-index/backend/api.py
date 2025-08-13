@@ -1,16 +1,23 @@
-import os
 
+import os
 import openai
 import config
 from rag_service import RAGService
 from audit_logger import log_query, log_feedback
 from flask import Flask, request, jsonify
+from sync_service import sync_data_directory
 
 # Initialize Flask app
 app = Flask(__name__)
 
+
+# Synchronize index with data directory at startup
+try:
+    sync_data_directory()
+except Exception as e:
+    print(f"Error during index synchronization: {e}")
+
 # Initialize the RAG service on application startup
-# This ensures models are loaded only once
 try:
     rag_service = RAGService()
 except Exception as e:
