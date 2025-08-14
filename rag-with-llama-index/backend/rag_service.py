@@ -26,7 +26,7 @@ class RAGService:
 
     def _load_index(self):
         "Loads the index from storage or builds a new one if it doesn't exists."
-        if os.path.exists(config.STORAGE_DIR):
+        if os.path.exists(config.STORAGE_DIR) and os.listdir(config.STORAGE_DIR):
             print("Loading index from storage...")
             storage_context = StorageContext.from_defaults(persist_dir=config.STORAGE_DIR)
             self.index = load_index_from_storage(storage_context)

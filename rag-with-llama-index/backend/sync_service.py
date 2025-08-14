@@ -2,7 +2,7 @@ import os
 import time
 import json
 import hashlib
-import schedule
+import sync_service
 import config
 from rag_service import RAGService
 

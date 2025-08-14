@@ -20,11 +20,11 @@ CHUNK_OVERLAP = 64
 
 # --- File Paths ---
 # Directory where source documents are stored
-DATA_DIR = "./files/data"
+DATA_DIR = "./backend/files/data"
 # Directory to persist the vector index
-STORAGE_DIR = "./files/storage"
+STORAGE_DIR = "./backend/files/storage"
 # Directory for log files
-LOG_DIR = "./files/logs"
+LOG_DIR = "./backend/files/logs"
 # Path for the audit log CSV file
 AUDIT_LOG_FILE = os.path.join(LOG_DIR, "audit_log.csv")
 # Path for the index state manifest (tracks file versions)
