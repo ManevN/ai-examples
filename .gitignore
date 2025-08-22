@@ -377,3 +377,4 @@ override.tf.json
 *_override.tf.json
 terraform.tfvars
 terraform.tfvars.json
+rag-with-llama-index/.env
